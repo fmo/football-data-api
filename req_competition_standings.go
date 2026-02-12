@@ -1,3 +1,4 @@
+// Package footballdataapi fetching football data
 package footballdataapi
 
 import (
