@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+const url = "https://api.football-data.org/v4"
+
 type Client struct {
 	HTTPClient *http.Client
 }

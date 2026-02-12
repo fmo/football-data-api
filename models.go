@@ -9,14 +9,6 @@ type Area struct {
 	ParentArea   string `json:"parentArea"`
 }
 
-type Competition struct {
-	ID     int    `json:"id"`
-	Name   string `json:"name"`
-	Code   string `json:"code"`
-	Type   string `json:"type"`
-	Emblem string `json:"emblem"`
-}
-
 type Season struct {
 	ID              int      `json:"id"`
 	StartDate       string   `json:"startDate"`
