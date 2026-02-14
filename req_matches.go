@@ -23,16 +23,12 @@ type RespMatches struct {
 	Matches     []Match `json:"matches"`
 }
 
-func (r *ReqMatches) Do(competitionCode CompetitionCode, status Status, season, matchday int) (*RespMatches, error) {
+func (r *ReqMatches) Do(competitionCode CompetitionCode, season, matchday int) (*RespMatches, error) {
 	if _, ok := competitions[competitionCode]; !ok {
 		return nil, ErrNotSupportedCompetition
 	}
 
-	if _, ok := statuses[status]; !ok {
-		return nil, ErrNotSupportedStatus
-	}
-
-	res, err := r.client.Do(fmt.Sprintf("%s/competitions/%s/matches?season=%d&matchday=%d&status=%s", url, competitionCode, season, matchday, status))
+	res, err := r.client.Do(fmt.Sprintf("%s/competitions/%s/matches?season=%d&matchday=%d", url, competitionCode, season, matchday))
 	if err != nil {
 		return nil, err
 	}

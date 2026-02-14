@@ -5,12 +5,9 @@ type Status string
 const (
 	Finished  Status = "FINISHED"
 	Scheduled Status = "SCHEDULED"
+	Live      Status = "LIVE"
+	InPlay    Status = "IN_PLAY"
 )
-
-var statuses = map[Status]struct{}{
-	Finished:  {},
-	Scheduled: {},
-}
 
 type Match struct {
 	HomeTeam Team   `json:"homeTeam"`
