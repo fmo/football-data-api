@@ -3,6 +3,7 @@ package footballdataapi
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 )
 
@@ -20,8 +21,12 @@ type RespCompStandings struct {
 	Standings   []Standings `json:"standings"`
 }
 
-func (r *ReqCompStandings) Do() (*RespCompStandings, error) {
-	res, err := r.client.Do("https://api.football-data.org/v4/competitions/PL/standings?season=2025")
+func (r *ReqCompStandings) Do(competitionCode CompetitionCode, season int) (*RespCompStandings, error) {
+	if _, ok := competitions[competitionCode]; !ok {
+		return nil, ErrNotSupportedCompetition
+	}
+
+	res, err := r.client.Do(fmt.Sprintf("%s/competitions/%s/standings?season=%d", url, competitionCode, season))
 	if err != nil {
 		return nil, err
 	}

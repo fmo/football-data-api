@@ -9,14 +9,12 @@ import (
 )
 
 func main() {
-	client := footballdataapi.NewMatches(&footballdataapi.Client{HTTPClient: &http.Client{}})
-	resp, err := client.Do(footballdataapi.PL, footballdataapi.Finished, 2025, 24)
+	client := footballdataapi.NewReqCompStandings(&footballdataapi.Client{HTTPClient: &http.Client{}})
+	resp, err := client.Do(footballdataapi.PL, 2025)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for _, m := range resp.Matches {
-		fmt.Println(m.HomeTeam.Name, m.AwayTeam.Name, m.Score.FullTime)
-	}
+	fmt.Println(resp.Season)
 }
