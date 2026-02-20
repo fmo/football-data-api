@@ -3,14 +3,13 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
 
 	footballdataapi "github.com/fmo/football-data-api"
 )
 
 func main() {
-	client := footballdataapi.NewMatches(&footballdataapi.Client{HTTPClient: &http.Client{}})
-	resp, err := client.Do(footballdataapi.PL, 2025, 26)
+	client := footballdataapi.NewClient()
+	resp, err := client.TeamMatches.Do(759)
 
 	if err != nil {
 		log.Fatal(err)

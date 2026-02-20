@@ -4,16 +4,30 @@ import (
 	"context"
 	"net/http"
 	"os"
+	"time"
 )
 
 const url = "https://api.football-data.org/v4"
 
 type Client struct {
-	HTTPClient *http.Client
+	http        *http.Client
+	Standings   *Standings
+	Matches     *Matches
+	Areas       *Areas
+	TeamMatches *TeamMatches
 }
 
-func NewClient(httpClient *http.Client) *Client {
-	return &Client{httpClient}
+func NewClient() *Client {
+	client := &Client{
+		http: &http.Client{Timeout: 10 * time.Second},
+	}
+
+	client.Standings = newStandings(client)
+	client.Matches = newMatches(client)
+	client.Areas = newAreas(client)
+	client.TeamMatches = newTeamMatches(client)
+
+	return client
 }
 
 func (c *Client) Do(url string) (*http.Response, error) {
@@ -24,5 +38,5 @@ func (c *Client) Do(url string) (*http.Response, error) {
 
 	req.Header.Add("X-Auth-Token", os.Getenv("API_KEY"))
 
-	return c.HTTPClient.Do(req)
+	return c.http.Do(req)
 }
