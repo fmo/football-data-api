@@ -18,7 +18,7 @@ type TeamMatchesResponse struct {
 	Matches []Match `json:"matches"`
 }
 
-func (tm *TeamMatches) Do(teamID int) (*TeamMatchesResponse, error) {
+func (tm *TeamMatches) Fetch(teamID int) (*TeamMatchesResponse, error) {
 	resp, err := tm.client.Do(fmt.Sprintf("%s/teams/%d/matches", url, teamID))
 	if err != nil {
 		return nil, err

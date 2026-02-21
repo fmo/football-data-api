@@ -13,17 +13,3 @@ type Team struct {
 	Name      string `json:"name"`
 	ShortName string `json:"shortName"`
 }
-
-type Table struct {
-	Position       int `json:"position"`
-	Team           Team
-	PlayedGames    int    `json:"playedGames"`
-	Form           string `json:"form"`
-	Won            int    `json:"won"`
-	Draw           int    `json:"draw"`
-	Lost           int    `json:"lost"`
-	Points         int    `json:"points"`
-	GoalsFor       int    `json:"goalsFor"`
-	GoalsAgainst   int    `json:"goalsAgainst"`
-	GoalDifference int    `json:"goalDifference"`
-}

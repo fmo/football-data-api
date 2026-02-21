@@ -28,7 +28,7 @@ type AreasResponse struct {
 	Areas []*Area
 }
 
-func (a *Areas) Do() (*AreasResponse, error) {
+func (a *Areas) Fetch() (*AreasResponse, error) {
 	res, err := a.client.Do("https://api.football-data.org/v4/areas")
 	if err != nil {
 		return nil, err

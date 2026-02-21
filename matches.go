@@ -46,7 +46,7 @@ type MatchesResponse struct {
 	Matches     []Match `json:"matches"`
 }
 
-func (m *Matches) Do(competitionCode CompetitionCode, season, matchday int) (*MatchesResponse, error) {
+func (m *Matches) Fetch(competitionCode CompetitionCode, season, matchday int) (*MatchesResponse, error) {
 	if _, ok := competitions[competitionCode]; !ok {
 		return nil, ErrNotSupportedCompetition
 	}

@@ -31,6 +31,20 @@ type Standing struct {
 	Table []Table `json:"table"`
 }
 
+type Table struct {
+	Position       int `json:"position"`
+	Team           Team
+	PlayedGames    int    `json:"playedGames"`
+	Form           string `json:"form"`
+	Won            int    `json:"won"`
+	Draw           int    `json:"draw"`
+	Lost           int    `json:"lost"`
+	Points         int    `json:"points"`
+	GoalsFor       int    `json:"goalsFor"`
+	GoalsAgainst   int    `json:"goalsAgainst"`
+	GoalDifference int    `json:"goalDifference"`
+}
+
 type Standings struct {
 	client *Client
 }
@@ -45,7 +59,7 @@ type StandingsResponse struct {
 	Standings   []Standing  `json:"standings"`
 }
 
-func (s *Standings) Do(competitionCode CompetitionCode, season int) (*StandingsResponse, error) {
+func (s *Standings) Fetch(competitionCode CompetitionCode, season int) (*StandingsResponse, error) {
 	if _, ok := competitions[competitionCode]; !ok {
 		return nil, ErrNotSupportedCompetition
 	}
