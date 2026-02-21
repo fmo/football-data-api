@@ -9,7 +9,7 @@ import (
 
 func main() {
 	client := footballdataapi.NewClient()
-	resp, err := client.TeamMatches.Fetch(759)
+	resp, err := client.Teams.Fetch("PL")
 
 	if err != nil {
 		log.Fatal(err)

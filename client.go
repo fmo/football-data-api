@@ -15,6 +15,7 @@ type Client struct {
 	Matches     *Matches
 	Areas       *Areas
 	TeamMatches *TeamMatches
+	Teams       *Teams
 }
 
 func NewClient() *Client {
@@ -26,6 +27,7 @@ func NewClient() *Client {
 	client.Matches = newMatches(client)
 	client.Areas = newAreas(client)
 	client.TeamMatches = newTeamMatches(client)
+	client.Teams = newTeams(client)
 
 	return client
 }
